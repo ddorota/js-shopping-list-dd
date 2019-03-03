@@ -29,6 +29,8 @@
 .list-element .icons .done{
   float: left;
   margin-right: 10px;
+  text-decoration: line-through; 
+
 }
 .list-element .icons .delete{
   background-image: url(img/kosz.jpg);
@@ -47,3 +49,8 @@
   margin-left: 2%;
   /* text-align: left; */
 }
+
+
+  /* text-decoration: line-through; */
+  /* text-align: left; */
+
