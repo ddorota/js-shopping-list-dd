@@ -37,6 +37,12 @@ function addNewItem(itemName) {
 //       }
 //   })
 // })
+if(checked){
+  itemText.style.textDecoration = "line-through";
+  }
+  else{
+  itemText.style.textDecoration = "none";
+  }
 }
 
 // document is ready
