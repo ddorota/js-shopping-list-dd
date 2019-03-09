@@ -7,7 +7,7 @@ function addNewItem(itemName) {
 
       '<div class="icons">' +
         '<div class="done">' +
-          '<input type="checkbox"/>'+
+          '<input type="checkbox" />'+
         '</div>' +
         '<div class="delete"></div>' +
       '</div>' +
@@ -37,12 +37,7 @@ function addNewItem(itemName) {
 //       }
 //   })
 // })
-if(checked){
-  itemText.style.textDecoration = "line-through";
-  }
-  else{
-  itemText.style.textDecoration = "none";
-  }
+
 }
 
 // document is ready
@@ -51,14 +46,15 @@ $(function () {
     addNewItem($('#new-item').val());
   });
 });
+$("input[type='checkbox']").on('change', function() {
+  if ($(this).is(":checked")) {
+    $(this).parent().parent().css({
+      'text-decoration': 'line-through'
+    })
+  } else {
+    $(this).parent().parent().css({
+      'text-decoration': 'none'
+    })
+  }
+});
 
-
-// $("input[type='checkbox']").on('change', function() {
-//   if ($(this).is(":checked")) {
-//     $(this).addClass('completed')
-//   } else {
-//     $(this).css({
-//       'text-decoration': 'none',
-//     })
-//   }
-// });
