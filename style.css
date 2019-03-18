@@ -12,7 +12,7 @@
 .add-button-container {
   float: left;
 }
-.list {
+#list {
   padding-top: 30px;
   width: 300px;
 }
@@ -30,6 +30,7 @@
 .list-element .icons .done{
   float: left;
   margin-right: 10px;
+  text-decoration: line-through;
 
 }
 .list-element .icons .delete{
@@ -47,12 +48,4 @@
 .list-element .text {
   float: left;
   margin-left: 2%;
-  /* text-align: left; */
 }
-input[type=checkbox]:checked {
-  text-decoration: line-through;
-}
-
-  /* text-decoration: line-through; */
-  /* text-align: left; */
-
