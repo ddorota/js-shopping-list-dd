@@ -1,43 +1,22 @@
 
 function addNewItem(itemName) {
-  
+  var id = uuidv4();
   // Create var with string (all element html)
-  let elementHtml = 
-    '<div class="list-element"> ' +
-
-      '<div class="icons">' +
-        '<div class="done">' +
-          '<input type="checkbox" />'+
-        '</div>' +
-        '<div class="delete"></div>' +
-      '</div>' +
-      '<div class="text">' +
-      itemName +
+  let elementHtml =
+    '<div class="list-element" id="' + id + '"> ' +
+    '<div class="icons" id="icons">' +
+    '<div class="done" id "done">' +
+    '<input class="make-it-done" type="checkbox" id="make-it-done" onchange="makeDone(\'' + id + '\')" />' +
     '</div>' +
-    
+    '<div class="delete" onclick="deleteItem(\'' + id + '\')"></div>' +
+    '</div>' +
+    '<div class="text" id="text">' +
+    itemName +
+    '</div>' +
     '</div>';
 
   // Append created string to end of .list div html
-  // @todo make it ID not class
-  $('.list').prepend(elementHtml);
-
-  // add delete event listener
-  // We need to do it every time we add new div .delete
-  $('.delete').click(function () {
-    $(this).parent().parent().remove();
-  });
-//   $('#checkbox').change(function () {
-// });
-// $(function () {
-//   $('input:checkbox').on('change', function () {
-//       if (this.checked) {
-//           $(input).css('textDecoration', 'line-through');
-//       } else {
-//           $(input).css('textDecoration', 'none');
-//       }
-//   })
-// })
-
+  $('#list').prepend(elementHtml);
 }
 
 // document is ready
@@ -46,15 +25,37 @@ $(function () {
     addNewItem($('#new-item').val());
   });
 });
-$("input[type='checkbox']").on('change', function() {
-  if ($(this).is(":checked")) {
-    $(this).parent().parent().css({
+
+/**
+ * @see https://stackoverflow.com/a/2117523
+ */
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
+function deleteItem(id) {
+  $("#" + id).remove();
+}
+
+function makeDone(id) {
+  var list = $('#list');
+  var container = $("#" + id);
+  let textContainer = container.find('.text');
+  let checkbox = container.find(".make-it-done");
+  if (checkbox.is(":checked")) {
+    list.append(container);
+    textContainer.css({
       'text-decoration': 'line-through'
-    })
+    });
   } else {
-    $(this).parent().parent().css({
+    list.prepend(container);
+    textContainer.css({
       'text-decoration': 'none'
     })
   }
-});
 
+
+}
